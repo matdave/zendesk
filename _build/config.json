@@ -1,0 +1,29 @@
+{
+  "name": "Zendesk",
+  "lowCaseName": "zendesk",
+  "description": "Zendesk Hook for MODX FormIt",
+  "author": "matdave",
+  "version": "1.0.0-pl",
+  "package": {
+    "elements": {
+      "snippets": [
+        {
+          "name": "zdHook",
+          "file": "zdhook.php"
+        }
+      ]
+    },
+    "systemSettings": [
+      {
+        "key": "domain"
+      },
+      {
+        "key": "user"
+      },
+      {
+        "key": "token",
+        "type": "text-password"
+      }
+    ]
+  }
+}
