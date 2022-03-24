@@ -7,7 +7,7 @@ class Tickets extends API
     {
         return $this->curl("tickets/${$ticket}.json", 'GET');
     }
-    public function comment($ticket, $body, $author, $public = true): array
+    public function comment($id, $body, $author, $public = true): array
     {
         $ticket = [
             'ticket' => [
@@ -18,7 +18,7 @@ class Tickets extends API
                 ]
             ]
         ];
-        return $this->curl("tickets/${$ticket}.json", 'PUT', $ticket);
+        return $this->curl("tickets/$id.json", 'PUT', $ticket);
     }
 
     public function create($body, $subject, $requestor): array

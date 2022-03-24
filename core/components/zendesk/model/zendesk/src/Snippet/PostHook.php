@@ -6,7 +6,7 @@ use Zendesk\API\Tickets;
 
 class PostHook extends Snippet
 {
-    public function run(): boolean
+    public function run(): bool
     {
         $defaultConfig = [
             'zdAllowNewTicket' => true,
@@ -24,7 +24,7 @@ class PostHook extends Snippet
         $config = array_merge($defaultConfig, $hook->formit->config);
         $values = $hook->getValues();
 
-        $requireTicket = !boolval($config['zdAllowNewTicket']);
+        $requireTicket = !$this->bool($config['zdAllowNewTicket']);
 
         if (empty($values[$config['zdEmailField']])) {
             $hook->addError($config['zdEmailField'], $this->modx->lexicon('zendesk.err.field_email'));
@@ -51,10 +51,10 @@ class PostHook extends Snippet
                 $hook->addError($config['zdEmailField'], $this->modx->lexicon('zendesk.err.user_create'));
                 return $hook->hasErrors();
             }
-            $id = $user['result']['user']['id'];
+            $id = $user['result']->user->id;
         } else {
             // grab first results
-            $id = $userResults['result']['users'][0]['id'];
+            $id = $userResults['result']->users[0]->id;
         }
 
         if (empty($id)) {
@@ -63,7 +63,7 @@ class PostHook extends Snippet
         }
 
         $tickets = new Tickets($this->zendesk);
-        if (empty($values[$config['zdTicketField']])) {
+        if (empty($values[$config['zdTicketField']]) && $this->bool($config['zdAllowNewTicket'])) {
             if ($requireTicket) {
                 $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_not_found'));
                 return $hook->hasErrors();
@@ -77,23 +77,25 @@ class PostHook extends Snippet
                 $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_no_create'));
                 return $hook->hasErrors();
             }
-        } else {
+        } elseif ($this->bool($config['zdAllowCommentTicket'])) {
             $ticket = $tickets->get($values[$config['zdTicketField']]);
             if (empty($ticket['result'])) {
                 $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_not_found'));
                 return $hook->hasErrors();
             }
-            if ($ticket['result']['ticket']['status'] === 'solved' && !$config['zdAllowCommentClosed']) {
+            if ($ticket['result']->ticket->status === 'solved' && !$config['zdAllowCommentClosed']) {
                 $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_not_active'));
                 return $hook->hasErrors();
             }
-            $comment = $tickets->comment($values[$config['zdTicketField']], $values[$config['zdCommentField']], $id, boolval($config['zdPublicComment']));
+            $comment = $tickets->comment($values[$config['zdTicketField']], $values[$config['zdCommentField']], $id, $this->bool($config['zdPublicComment']));
             if ($comment['code'] < 300) {
                 return true;
             } else {
                 $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_no_create'));
                 return $hook->hasErrors();
             }
+        } else {
+            $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_no_create'));
         }
         return $hook->hasErrors();
     }

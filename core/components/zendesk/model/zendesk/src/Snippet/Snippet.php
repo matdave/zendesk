@@ -38,4 +38,15 @@ abstract class Snippet
 
         return $this->modx->getChunk($tpl, $phs);
     }
+
+    protected function bool($input): bool
+    {
+        if ($input === 'false') {
+            return false;
+        }
+        if ($input === 'true') {
+            return true;
+        }
+        return (bool) $input;
+    }
 }

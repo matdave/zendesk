@@ -19,8 +19,8 @@ This package includes a FormIt hook for creating and updating tickets in Zendesk
 | zdAllowCommentClosed | false | Allow commenting on closed tickets                           |
 | zdPublicComment | true | Set comments as public                                       |
 | zdTicketField | ticket | The field name for the ticket ID                             |
-| zdEmailField | email | The field name for the commentor email                       |
-| zdNameField | name | The field name for the commentor name                        |
+| zdEmailField | email | The field name for the commenter email                       |
+| zdNameField | name | The field name for the commenter name                        |
 | zdCommentField | comment | The field name for the ticket message                        |
 | zdSubject | `New Ticket from [[+name]]` | The subject of a new ticket |
 
