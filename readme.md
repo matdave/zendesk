@@ -2,13 +2,15 @@
 
 This package includes a FormIt hook for creating and updating tickets in Zendesk. 
 
+Signup for a [Zendesk account here](https://www.zendesk.com/).
+
 ## System Settings
 
 | Key | Description |
 |-----|-------------|
 | zendesk.domain | The prefix domain of your Zendesk account, e.g. {{domain}}.zendesk.com |
 | zendesk.user | Authenticated user email address for your Zendesk account. Must have agent access. |
-| zendesk.token | API Token for your Zendesk account. |
+| zendesk.token | [API Token](https://support.zendesk.com/hc/en-us/articles/4408889192858#:~:text=Generating%20an%20API%20token%201%20In%20Admin%20Center%2C,Save%20to%20return%20to%20the%20API%20page.%20) for your Zendesk account. |
 
 ## Hook Options
 
