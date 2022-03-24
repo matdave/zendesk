@@ -88,7 +88,7 @@ class PostHook extends Snippet
                 $hook->addError($config['zdTicketField'], $this->modx->lexicon('zendesk.err.ticket_not_active'));
                 return $hook->hasErrors();
             }
-            $comment = $tickets->comment($values[$config['zdTicketField']], $values[$config['zdCommentField']], $id, $config['zdPublicComment']);
+            $comment = $tickets->comment($values[$config['zdTicketField']], $values[$config['zdCommentField']], $id, boolval($config['zdPublicComment']));
             if ($comment['code'] < 300) {
                 return true;
             } else {
