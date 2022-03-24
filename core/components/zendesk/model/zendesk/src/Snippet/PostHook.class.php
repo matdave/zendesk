@@ -1,7 +1,6 @@
 <?php
 namespace Zendesk\Snippet;
 
-use Zendesk\Snippet;
 use Zendesk\API\Users;
 use Zendesk\API\Tickets;
 

@@ -1,8 +1,6 @@
 <?php
 namespace Zendesk\API;
 
-use Zendesk\API;
-
 class Tickets extends API
 {
     public function search($ticket): array

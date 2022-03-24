@@ -1,8 +1,6 @@
 <?php
 namespace Zendesk\API;
 
-use Zendesk\API;
-
 class Users extends API
 {
     public function search($email): array

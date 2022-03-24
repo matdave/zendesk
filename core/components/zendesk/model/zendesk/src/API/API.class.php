@@ -1,5 +1,5 @@
 <?php
-namespace Zendesk;
+namespace Zendesk\API;
 
 abstract class API
 {

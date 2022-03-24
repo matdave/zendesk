@@ -1,5 +1,5 @@
 <?php
-namespace ZenDesk;
+namespace Zendesk\Snippet;
 
 abstract class Snippet
 {
