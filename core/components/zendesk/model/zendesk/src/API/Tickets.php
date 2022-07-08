@@ -15,7 +15,8 @@ class Tickets extends API
                     'body' => $body,
                     'author_id' => $author,
                     'public' => $public,
-                ]
+                ],
+                'status' => 'open'
             ]
         ];
         return $this->curl("tickets/$id.json", 'PUT', $ticket);
