@@ -1,1 +1,7 @@
-Initial Release
+1.1.0-pl
+- Switched authentication from API tokens to the OAuth client credentials flow.
+- Replaced the zendesk.user and zendesk.token system settings with zendesk.client_id, zendesk.client_secret, and zendesk.scope.
+- Fixed user creation to reuse an existing user matched by email instead of always creating a new one.
+
+1.0.3-pl
+- Initial Release

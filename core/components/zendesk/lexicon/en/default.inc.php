@@ -10,5 +10,6 @@ $_lang['zendesk.err.ticket_not_found'] = 'Ticket not found';
 $_lang['zendesk.err.user_create'] = 'Unable to create user';
 
 $_lang['settting_zendesk.domain'] = 'The prefix domain of your Zendesk account, e.g. {{domain}}.zendesk.com';
-$_lang['settting_zendesk.user'] = 'Authenticated user email address for your Zendesk account. Must have agent access.';
-$_lang['settting_zendesk.token'] = 'API Token for your Zendesk account.';
+$_lang['settting_zendesk.client_id'] = 'The Identifier of your Zendesk OAuth client (Admin Center > Apps and integrations > APIs > OAuth clients).';
+$_lang['settting_zendesk.client_secret'] = 'The Secret of your Zendesk OAuth client. Shown only once when the OAuth client is created.';
+$_lang['settting_zendesk.scope'] = 'OAuth scopes requested when obtaining an access token. Defaults to "read write".';

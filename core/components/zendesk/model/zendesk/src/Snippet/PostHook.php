@@ -42,24 +42,17 @@ class PostHook extends Snippet
         }
 
         $users = new Users($this->zendesk);
-        //search users
+        // reuse an existing user by email, otherwise create one
         $userResults = $users->search($values[$config['zdEmailField']]);
-        if (empty($userResults['result'])) {
+        $id = !empty($userResults['result']->users) ? $userResults['result']->users[0]->id : null;
+        if (empty($id)) {
             // create user
             $user = $users->create($values[$config['zdEmailField']], $values[$config['zdNameField']]);
-            if (empty($user['result'])) {
+            if (empty($user['result']->user->id)) {
                 $hook->addError($config['zdEmailField'], $this->modx->lexicon('zendesk.err.user_create'));
                 return $hook->hasErrors();
             }
             $id = $user['result']->user->id;
-        } else {
-            // grab first results
-            $id = $userResults['result']->users[0]->id;
-        }
-
-        if (empty($id)) {
-            $hook->addError($config['zdEmailField'], $this->modx->lexicon('zendesk.err.user_create'));
-            return $hook->hasErrors();
         }
 
         $tickets = new Tickets($this->zendesk);

@@ -3,7 +3,7 @@
   "lowCaseName": "zendesk",
   "description": "Zendesk Hook for MODX FormIt",
   "author": "matdave",
-  "version": "1.0.3-pl",
+  "version": "1.1.0-pl",
   "package": {
     "elements": {
       "snippets": [
@@ -18,11 +18,15 @@
         "key": "domain"
       },
       {
-        "key": "user"
+        "key": "client_id"
       },
       {
-        "key": "token",
+        "key": "client_secret",
         "type": "text-password"
+      },
+      {
+        "key": "scope",
+        "value": "tickets:read tickets:write users:read users:write"
       }
     ]
   }

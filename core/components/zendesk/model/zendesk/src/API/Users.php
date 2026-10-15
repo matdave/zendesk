@@ -5,7 +5,7 @@ class Users extends API
 {
     public function search($email): array
     {
-        return $this->curl("users/search.json?query=$email", 'GET');
+        return $this->curl('users/search.json?query=' . urlencode("email:$email"), 'GET');
     }
     public function create($email, $name): array
     {
@@ -15,6 +15,6 @@ class Users extends API
                 'name' => $name,
             ]
         ];
-        return $this->curl("tickets/users.json", 'POST', $user);
+        return $this->curl("users.json", 'POST', $user);
     }
 }
